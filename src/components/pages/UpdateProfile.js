@@ -20,8 +20,8 @@ const UpdateProfile = () => {
             console.log(error);
         });
     }
-    console.log(name.current.value);
-    console.log(profileUrl.current.value);
+
+
     return (
         <div>
             <div className='flex justify-between px-8 border border-b-4'>
