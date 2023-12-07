@@ -3,10 +3,12 @@ import React, { useRef, useState } from "react";
 import { checkValidateData } from "../../utils/validation";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [isSignUpForm, setIsSignUpForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
+    const navigate = useNavigate();
 
     const email = useRef(null);
     const password = useRef(null);
@@ -27,6 +29,7 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
+                    navigate('/welcome');
                 })
                 .catch((error) => {
                     // const errorCode = error.code;
@@ -40,6 +43,7 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
+                    navigate('/welcome');
                 })
                 .catch((error) => {
                     setErrorMessage("Please Sign up.");
