@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { checkValidateData } from "../../utils/validation";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -124,6 +124,13 @@ const Login = () => {
                         </p>
                     </div>
                 )}
+                {!isSignUpForm && <div>
+                    <Link to='/forgot-password'>
+                        <p className="rounded-md text-sm px-2 my-5 text-center cursor-pointer hover:underline">
+                            Forgot password?
+                        </p>
+                    </Link>
+                </div>}
             </form>
         </div>
     );
