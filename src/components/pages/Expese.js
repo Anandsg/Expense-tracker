@@ -1,10 +1,10 @@
 import React from 'react'
-import Expenses from '../expenses/Expenses';
+import AddExpenses from '../expenses/AddExpenses';
 
 const Expese = () => {
     return (
         <div>
-            <Expenses />
+            <AddExpenses />
         </div>
     )
 }
