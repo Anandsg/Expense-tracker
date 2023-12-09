@@ -11,6 +11,7 @@ const AddExpenses = () => {
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('Food');
     const [expensesList, setExpensesList] = useState([]);
+    const [showActivatePremium, setShowActivatePremium] = useState(false);
 
     useEffect(() => {
         fetchExpenses();
@@ -51,8 +52,10 @@ const AddExpenses = () => {
                 money: money,
                 description: description,
                 category: category,
-                email: email,
             };
+            if (expenses.money >= 10000) {
+                setShowActivatePremium(true);
+            }
             try {
                 const resp = await axios.post(
                     'https://expense-tracker-main-e0bd5-default-rtdb.firebaseio.com/expenses.json',
@@ -64,15 +67,17 @@ const AddExpenses = () => {
                     }
                 );
                 if (resp.status === 200) {
-                    setExpensesList((prevExpenses) => [
-                        {
-                            id: resp.data.name,
-                            money: expenses.money,
-                            description: expenses.description,
-                            category: expenses.category,
-                        },
-                        ...prevExpenses,
-                    ]);
+                    if (expenses.money <= 10000) {
+                        setExpensesList((prevExpenses) => [
+                            {
+                                id: resp.data.name,
+                                money: expenses.money,
+                                description: expenses.description,
+                                category: expenses.category,
+                            },
+                            ...prevExpenses,
+                        ]);
+                    }
                 } else {
                     alert('Something went wrong...');
                 }
@@ -146,6 +151,16 @@ const AddExpenses = () => {
                 >
                     Add Expense
                 </button>
+                {showActivatePremium && (
+                    <button
+                        className="bg-yellow-500 text-white mx-2 p-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:border-yellow-300"
+                        onClick={() => {
+                            alert('Premium Activated');
+                        }}
+                    >
+                        Activate Gold
+                    </button>
+                )}
             </form>
             <div className="mt-6">
                 <h3 className="text-xl font-semibold mb-3">Expense List</h3>
