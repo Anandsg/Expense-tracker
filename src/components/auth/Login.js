@@ -40,7 +40,11 @@ const Login = () => {
                         confirmPassword.current.value : null);
                 const user = userCredential.user;
                 console.log(user);
+
                 dispatch(authActions.login({ token: user.accessToken, email: user.email }))
+                const loginDetails = { token: user.accessToken, email: user.email };
+                localStorage.setItem('details', JSON.stringify(loginDetails));
+
                 // Send verification email
                 const mailVerify = await axios.post(
                     'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCYeO_oN8vi04oevMwTzHFSCuxOCgbLHe8',

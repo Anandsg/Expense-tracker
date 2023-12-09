@@ -1,7 +1,12 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { expenseActions } from '../store/expenseSlice';
 
 const AddExpenses = () => {
+    const dispatch = useDispatch();
+    const email = useSelector((state) => state.auth.email)
+
     const [money, setMoney] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('Food');
@@ -29,6 +34,7 @@ const AddExpenses = () => {
                         category: parsedData.category,
                     });
                 }
+                dispatch(expenseActions.addExpense(loadedExpenses))
                 setExpensesList(loadedExpenses);
             } else {
                 alert('Something went wrong, please refresh the page.');
@@ -45,6 +51,7 @@ const AddExpenses = () => {
                 money: money,
                 description: description,
                 category: category,
+                email: email,
             };
             try {
                 const resp = await axios.post(

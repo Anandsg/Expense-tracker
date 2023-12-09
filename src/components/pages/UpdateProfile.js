@@ -4,6 +4,7 @@ import image from "../../../src/assets/Github.png";
 import browse from "../../../src/assets/Browse.png";
 import { updateProfile } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
+import Header from '../pages/Header';
 
 const UpdateProfile = () => {
 
@@ -24,6 +25,7 @@ const UpdateProfile = () => {
 
     return (
         <div>
+            <Header />
             <div className='flex justify-between px-8 border border-b-4'>
                 <p className='font-serif p-5 font-semibold'>Winners never quit, quitters never win.</p>
                 <div className='flex items-center text-md bg-purple-200 my-2 px-6 font-serif rounded-lg'>

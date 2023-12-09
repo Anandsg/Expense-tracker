@@ -1,12 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { authActions } from '../store/authSlice';
 
 const Header = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const handleLogout = () => {
+
         localStorage.clear();
-        navigate('/');
+        dispatch(authActions.logout())
+        navigate('/', { replace: true })
     };
 
     return (
