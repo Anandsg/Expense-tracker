@@ -4,8 +4,12 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { auth } from "../../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/authSlice";
 
 const Login = () => {
+    const dispatch = useDispatch();
+
     const [isSignUpForm, setIsSignUpForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
@@ -36,7 +40,7 @@ const Login = () => {
                         confirmPassword.current.value : null);
                 const user = userCredential.user;
                 console.log(user);
-
+                dispatch(authActions.login({ token: user.accessToken, email: user.email }))
                 // Send verification email
                 const mailVerify = await axios.post(
                     'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCYeO_oN8vi04oevMwTzHFSCuxOCgbLHe8',
