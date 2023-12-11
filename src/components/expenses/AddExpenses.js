@@ -16,6 +16,29 @@ const AddExpenses = () => {
     useEffect(() => {
         fetchExpenses();
     }, []);
+    const csvDataDownloader = () => {
+        const csvData = [["Category", "Money", "Description"]];
+
+        expensesList.forEach((each) => {
+            let tmp = [each.category, each.money, each.description];
+            csvData.push(tmp);
+        });
+
+        function makeCSV(allRows) {
+            return allRows.map((r) => r.join(",")).join("\n");
+        }
+
+        const a2 = document.createElement("a");  // Create an anchor element
+        a2.id = "a2";
+        const blob2 = new Blob([makeCSV(csvData)]);
+        a2.href = URL.createObjectURL(blob2);
+
+        // Add the anchor element to the document body
+        document.body.appendChild(a2);
+
+        // Trigger a click event on the anchor element
+        a2.click();
+    };
 
     const fetchExpenses = async () => {
         try {
@@ -41,7 +64,7 @@ const AddExpenses = () => {
                 alert('Something went wrong, please refresh the page.');
             }
         } catch (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
     };
 
@@ -90,6 +113,7 @@ const AddExpenses = () => {
         } else {
             alert('Please enter all details.');
         }
+
     };
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
@@ -147,7 +171,7 @@ const AddExpenses = () => {
 
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+                    className="bg-indigo-500 text-white p-2 text-sm rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
                 >
                     Add Expense
                 </button>
@@ -187,6 +211,10 @@ const AddExpenses = () => {
                         </li>
                     ))}
                 </ul>
+                {/* {<button className='my-4 bg-indigo-500 text-white p-2 text-sm rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:border-blue-300'
+                    onClick={csvDataDownloader}>
+                    Download Expenses
+                </button>} */}
             </div>
         </div>
     );

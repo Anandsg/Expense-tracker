@@ -30,7 +30,7 @@ const Login = () => {
                 // Sign up logic
                 if (confirmPassword.current && confirmPassword.current.value
                     !== password.current.value) {
-                    setErrorMessage("Passwords do not match.");
+                    setErrorMessage("Passwords did not match.");
                     return;
                 }
 
@@ -107,25 +107,25 @@ const Login = () => {
                 <p className="text-sm text-red-500">{errorMessage}</p>
                 <button
                     onClick={handleValidationBtn}
-                    className="p-2 my-4 bg-blue-500 text-white w-full rounded-md"
+                    className="p-2 my-4 bg-indigo-500 text-white w-full rounded-md"
                 >
                     {isSignUpForm ? "Sign Up" : "Login"}
                 </button>
                 {isSignUpForm ? (
-                    <div className="flex bg-blue-100 p-2 rounded-md justify-center">
+                    <div className="flex p-2 rounded-md justify-center">
                         <p className="rounded-md text-sm px-2 text-center">Have an account? </p>
                         <p
-                            className=" text-sm cursor-pointer hover:underline"
+                            className=" text-sm cursor-pointer hover:underline text-indigo-500 "
                             onClick={toggleSignInForm}
                         >
                             Login
                         </p>
                     </div>
                 ) : (
-                    <div className="flex bg-blue-100 p-2 rounded-md justify-center">
+                    <div className="flex bg-indigo-100 p-2 rounded-md justify-center">
                         <p className="rounded-md text-sm px-2 text-center">Don't have an account?</p>
                         <p
-                            className=" text-sm cursor-pointer hover:underline"
+                            className=" text-sm cursor-pointer hover:underline "
                             onClick={toggleSignInForm}
                         >
                             Sign Up

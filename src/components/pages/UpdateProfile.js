@@ -22,11 +22,10 @@ const UpdateProfile = () => {
         });
     }
 
-
     return (
         <div>
             <Header />
-            <div className='flex justify-between px-8 border border-b-4'>
+            <div className='flex justify-between px-8 border border-b-4 '>
                 <p className='font-serif p-5 font-semibold'>Winners never quit, quitters never win.</p>
                 <div className='flex items-center text-md bg-purple-200 my-2 px-6 font-serif rounded-lg'>
                     <div className='p-2 my-0 font-light'>Your Profile is 64% completed a complete Profile <br />
@@ -35,9 +34,9 @@ const UpdateProfile = () => {
                     </div>
                 </div>
             </div>
-            <div className='py-8 flex justify-between items-center w-6/12 mx-auto'>
+            <div className='py-8 flex justify-between items-center w-6/12 mx-auto '>
                 <h1 className='font-semibold text-xl'>Contact details</h1>
-                <button className='bg-purple-300 p-2 text-sm rounded-md'>Cancel</button>
+                <button className='bg-indigo-300 hover:bg-indigo-400 p-2 text-sm rounded-md'>Cancel</button>
             </div>
             <div className='flex items-center w-6/12 mx-auto justify-center'>
                 <img src={image} alt='github'
@@ -54,7 +53,7 @@ const UpdateProfile = () => {
                     className='p-1 border px-2 mx-4' />
             </div>
             <div className='flex items-center w-6/12 mx-auto my-16'>
-                <button className='bg-purple-300 p-2 text-sm rounded-md'
+                <button className='bg-indigo-300 hover:bg-indigo-400 p-2 text-sm rounded-md'
                     onClick={handleUpdateProfile}
                 >Update</button>
             </div>
